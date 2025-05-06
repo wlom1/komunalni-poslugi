@@ -127,83 +127,7 @@
 </style>
 <script>
 function calculateSums() {
-
-    var sum0 = 0;
-    var payments0 = document.querySelectorAll('.payment0');
-    payments0.forEach(function(cell) {
-        var value = parseFloat(cell.value) || 0;
-        sum0 += value;
-    });
-    document.getElementById('sum0').innerText = sum0.toFixed(2) + ' ₴';
-
-    var sum1 = 0;
-    var payments1 = document.querySelectorAll('.payment1');
-    payments1.forEach(function(cell) {
-        var value = parseFloat(cell.value) || 0;
-        sum1 += value;
-    });
-    document.getElementById('sum1').innerText = sum1.toFixed(2) + ' ₴';
-
-    var sum2 = 0;
-    var payments2 = document.querySelectorAll('.payment2');
-    payments2.forEach(function(cell) {
-        var value = parseFloat(cell.value) || 0;
-        sum2 += value;
-    });
-    document.getElementById('sum2').innerText = sum2.toFixed(2) + ' ₴';
-
-    var sum3 = 0;
-    var payments3 = document.querySelectorAll('.payment3');
-    payments3.forEach(function(cell) {
-        var value = parseFloat(cell.value) || 0;
-        sum3 += value;
-    });
-    document.getElementById('sum3').innerText = sum3.toFixed(2) + ' ₴';
-
-    var sum4 = 0;
-    var payments4 = document.querySelectorAll('.payment4');
-    payments4.forEach(function(cell) {
-        var value = parseFloat(cell.value) || 0;
-        sum4 += value;
-    });
-    document.getElementById('sum4').innerText = sum4.toFixed(2) + ' ₴';
-
-    var sum5 = 0;
-    var payments5 = document.querySelectorAll('.payment5');
-    payments5.forEach(function(cell) {
-        var value = parseFloat(cell.value) || 0;
-        sum5 += value;
-    });
-    document.getElementById('sum5').innerText = sum5.toFixed(2) + ' ₴';
-
-    var sum6 = 0;
-    var payments6 = document.querySelectorAll('.payment6');
-    payments6.forEach(function(cell) {
-        var value = parseFloat(cell.value) || 0;
-        sum6 += value;
-    });
-    document.getElementById('sum6').innerText = sum6.toFixed(2) + ' ₴';
-
-    var sum7 = 0;
-    var payments7 = document.querySelectorAll('.payment7');
-    payments7.forEach(function(cell) {
-        var value = parseFloat(cell.value) || 0;
-        sum7 += value;
-    });
-    document.getElementById('sum7').innerText = sum7.toFixed(2) + ' ₴';
-
-}
-window.onload = function() {
-    var inputs = document.querySelectorAll('input[type="number"]');
-    inputs.forEach(function(input) {
-        input.addEventListener('input', calculateSums);
-    });
-    calculateSums();
-};
-</script>
-<script>
-function calculateSums() {
-    for (let i = 0; i <= 7; i++) { // Проходимося по всіх стовпцях з сумами
+    for (let i = 0; i <= 7; i++) {
         let sum = 0;
         const paymentInputs = document.querySelectorAll(`.payment${i}`);
         paymentInputs.forEach(function(cell) {
@@ -229,23 +153,46 @@ function checkInputValue() {
     }
 }
 
-window.onload = function() {
-    var inputs = document.querySelectorAll('input[type="number"]');
-    inputs.forEach(function(input) {
-        input.addEventListener('input', calculateSums);
-        input.addEventListener('input', checkInputValue);
+function saveData() {
+    const data = [];
+    const rows = document.querySelectorAll('tbody tr');
+    rows.forEach(row => {
+        const rowData = [];
+        const cells = row.querySelectorAll('td');
+        cells.forEach(cell => {
+            const input = cell.querySelector('input');
+            if (input) {
+                rowData.push(input.value);
+            } else {
+                rowData.push(cell.innerText); // Для першого стовпця "Послуга" та останнього рядка "Загалом"
+            }
+        });
+        data.push(rowData);
     });
-    calculateSums(); // Викликаємо один раз при завантаженні сторінки для ініціалізації сум
-};
+    localStorage.setItem('komunalni_poslugi_data', JSON.stringify(data));
+}
 
-function checkInputValue() {
-    const inputValue = parseFloat(this.value);
-    const parentCell = this.parentNode;
-
-    if (inputValue >= 0.01) {
-        parentCell.style.backgroundColor = '#ccffcc'; // Змініть на бажаний колір
-    } else {
-        parentCell.style.backgroundColor = ''; // Повертаємо початковий колір або задайте інший за замовчуванням
+function loadData() {
+    const storedData = localStorage.getItem('komunalni_poslugi_data');
+    if (storedData) {
+        const data = JSON.parse(storedData);
+        const rows = document.querySelectorAll('tbody tr');
+        data.forEach((rowData, rowIndex) => {
+            if (rows[rowIndex]) {
+                const cells = rows[rowIndex].querySelectorAll('td');
+                rowData.forEach((cellData, cellIndex) => {
+                    if (cells[cellIndex]) {
+                        const input = cells[cellIndex].querySelector('input');
+                        if (input) {
+                            input.value = cellData;
+                        } else if (cellIndex === 0 || rowIndex === rows.length - 1) {
+                            cells[cellIndex].innerText = cellData;
+                        }
+                    }
+                });
+            }
+        });
+        calculateSums(); // Перерахувати суми після завантаження даних
     }
 }
 
@@ -253,9 +200,11 @@ window.onload = function() {
     var inputs = document.querySelectorAll('input[type="number"]');
     inputs.forEach(function(input) {
         input.addEventListener('input', calculateSums);
-        input.addEventListener('input', checkInputValue); // Додаємо новий обробник подій
+        input.addEventListener('input', checkInputValue);
+        input.addEventListener('input', saveData); // Додаємо збереження при кожній зміні
     });
-    calculateSums();
+    loadData(); // Завантажуємо дані при завантаженні сторінки
+    calculateSums(); // Викликаємо один раз при завантаженні сторінки для ініціалізації сум
 };
 </script>
 </head>
