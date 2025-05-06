@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Комунальні Послуги (Мобільна версія)</title>
+<style>
+    body {
+        font-family: Calibri, sans-serif;
+        margin: 10px;
+        overflow-x: auto;
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        min-width: 600px;
+    }
+    th, td {
+        border: 1px solid #ccc;
+        padding: 6px;
+        text-align: center;
+        vertical-align: middle;
+        font-size: 14px;
+    }
+    th {
+        background-color: #f0f0f0;
+        position: sticky;
+        top: 0;
+        z-index: 2;
+    }
+    td:first-child, th:first-child {
+        position: sticky;
+        left: 0;
+        background-color: #f9f9f9;
+        z-index: 1;
+        font-weight: bold;
+    }
+    .payment {
+        background-color: #ffffff;
+        width: 80px;
+    }
+    .account {
+        background-color: #ddeeff;
+        width: 50px;
+    }
+    .sum-cell {
+        font-weight: bold;
+        background-color: #ffe0e0;
+    }
+    input[type="number"], input[type="text"] {
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+        font-size: 14px;
+    }
+</style>
+<script>
+function calculateSums() {
+
+    var sum0 = 0;
+    var payments0 = document.querySelectorAll('.payment0');
+    payments0.forEach(function(cell) {
+        var value = parseFloat(cell.value) || 0;
+        sum0 += value;
+    });
+    document.getElementById('sum0').innerText = sum0.toFixed(2) + ' ₴';
+
+    var sum1 = 0;
+    var payments1 = document.querySelectorAll('.payment1');
+    payments1.forEach(function(cell) {
+        var value = parseFloat(cell.value) || 0;
+        sum1 += value;
+    });
+    document.getElementById('sum1').innerText = sum1.toFixed(2) + ' ₴';
+
+    var sum2 = 0;
+    var payments2 = document.querySelectorAll('.payment2');
+    payments2.forEach(function(cell) {
+        var value = parseFloat(cell.value) || 0;
+        sum2 += value;
+    });
+    document.getElementById('sum2').innerText = sum2.toFixed(2) + ' ₴';
+
+    var sum3 = 0;
+    var payments3 = document.querySelectorAll('.payment3');
+    payments3.forEach(function(cell) {
+        var value = parseFloat(cell.value) || 0;
+        sum3 += value;
+    });
+    document.getElementById('sum3').innerText = sum3.toFixed(2) + ' ₴';
+
+    var sum4 = 0;
+    var payments4 = document.querySelectorAll('.payment4');
+    payments4.forEach(function(cell) {
+        var value = parseFloat(cell.value) || 0;
+        sum4 += value;
+    });
+    document.getElementById('sum4').innerText = sum4.toFixed(2) + ' ₴';
+
+    var sum5 = 0;
+    var payments5 = document.querySelectorAll('.payment5');
+    payments5.forEach(function(cell) {
+        var value = parseFloat(cell.value) || 0;
+        sum5 += value;
+    });
+    document.getElementById('sum5').innerText = sum5.toFixed(2) + ' ₴';
+
+    var sum6 = 0;
+    var payments6 = document.querySelectorAll('.payment6');
+    payments6.forEach(function(cell) {
+        var value = parseFloat(cell.value) || 0;
+        sum6 += value;
+    });
+    document.getElementById('sum6').innerText = sum6.toFixed(2) + ' ₴';
+
+    var sum7 = 0;
+    var payments7 = document.querySelectorAll('.payment7');
+    payments7.forEach(function(cell) {
+        var value = parseFloat(cell.value) || 0;
+        sum7 += value;
+    });
+    document.getElementById('sum7').innerText = sum7.toFixed(2) + ' ₴';
+
+}
+window.onload = function() {
+    var inputs = document.querySelectorAll('input[type="number"]');
+    inputs.forEach(function(input) {
+        input.addEventListener('input', calculateSums);
+    });
+    calculateSums();
+};
+</script>
+</head>
+<body>
+<h2 style="text-align:center;">Комунальні Послуги</h2>
+<div style="overflow-x: auto;">
+<table>
+<thead>
+<tr>
+<th>Послуга</th>
+<th colspan='2'>вул. Півд.-Кільц. 25/67</th><th colspan='2'>вул. БГК 9/160</th><th colspan='2'>вул.. Ентуз. 9А/133</th><th colspan='2'>вул. Мазепи 10А/112</th><th colspan='2'>вул. Мазепи 10А/160</th><th colspan='2'>вул. Головна, 206/96</th><th colspan='2'>Южинець</th><th colspan='2'>Вовчинець</th></tr><tr><th></th><th>Сума</th><th>Особ. рахунок</th><th>Сума</th><th>Особ. рахунок</th><th>Сума</th><th>Особ. рахунок</th><th>Сума</th><th>Особ. рахунок</th><th>Сума</th><th>Особ. рахунок</th><th>Сума</th><th>Особ. рахунок</th><th>Сума</th><th>Особ. рахунок</th><th>Сума</th><th>Особ. рахунок</th></tr></thead><tbody><tr><td>Електроенергія</td><td><input type='number' step='0.01' placeholder='0.00' class='payment0 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment1 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment2 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment3 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment4 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment5 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment6 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment7 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td></tr><tr><td>Споживання газу</td><td><input type='number' step='0.01' placeholder='0.00' class='payment0 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment1 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment2 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment3 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment4 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment5 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment6 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment7 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td></tr><tr><td>Доставка газу</td><td><input type='number' step='0.01' placeholder='0.00' class='payment0 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment1 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment2 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment3 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment4 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment5 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment6 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment7 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td></tr><tr><td>Холодна вода</td><td><input type='number' step='0.01' placeholder='0.00' class='payment0 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment1 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment2 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment3 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment4 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment5 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment6 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment7 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td></tr><tr><td>Абонплата води</td><td><input type='number' step='0.01' placeholder='0.00' class='payment0 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment1 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment2 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment3 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment4 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment5 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment6 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment7 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td></tr><tr><td>Опалення</td><td><input type='number' step='0.01' placeholder='0.00' class='payment0 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment1 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment2 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment3 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment4 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment5 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment6 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment7 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td></tr><tr><td>Абонплата опалення</td><td><input type='number' step='0.01' placeholder='0.00' class='payment0 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment1 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment2 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment3 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment4 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment5 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment6 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment7 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td></tr><tr><td>Вивіз сміття</td><td><input type='number' step='0.01' placeholder='0.00' class='payment0 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment1 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment2 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment3 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment4 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment5 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment6 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment7 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td></tr><tr><td>Домофон</td><td><input type='number' step='0.01' placeholder='0.00' class='payment0 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment1 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment2 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment3 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment4 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment5 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment6 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment7 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td></tr><tr><td>ОСББ/ЖБК</td><td><input type='number' step='0.01' placeholder='0.00' class='payment0 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment1 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment2 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment3 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment4 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment5 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment6 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment7 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td></tr><tr><td>Ліфт</td><td><input type='number' step='0.01' placeholder='0.00' class='payment0 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment1 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment2 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment3 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment4 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment5 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment6 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment7 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td></tr><tr><td>Укртелеком</td><td><input type='number' step='0.01' placeholder='0.00' class='payment0 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment1 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment2 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment3 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment4 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment5 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment6 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment7 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td></tr><tr><td>Тех. обслуг.</td><td><input type='number' step='0.01' placeholder='0.00' class='payment0 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment1 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment2 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment3 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment4 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment5 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment6 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td><td><input type='number' step='0.01' placeholder='0.00' class='payment7 payment'></td><td><input type='text' placeholder='Особовий рах.' class='account'></td></tr><tr><td><b>Загалом:</b></td><td class='sum-cell' id='sum0'></td><td></td><td class='sum-cell' id='sum1'></td><td></td><td class='sum-cell' id='sum2'></td><td></td><td class='sum-cell' id='sum3'></td><td></td><td class='sum-cell' id='sum4'></td><td></td><td class='sum-cell' id='sum5'></td><td></td><td class='sum-cell' id='sum6'></td><td></td><td class='sum-cell' id='sum7'></td><td></td></tr>
+</tbody>
+</table>
+</div>
+</body>
+</html>
