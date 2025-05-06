@@ -22,19 +22,90 @@
         vertical-align: middle;
         font-size: 14px;
     }
-    th {
+    thead th {
         background-color: #f0f0f0;
         position: sticky;
         top: 0;
         z-index: 2;
     }
-    td:first-child, th:first-child {
+    thead th:first-child {
+        position: sticky;
+        left: 0;
+        z-index: 3;
+        background-color: #e0e0e0;
+    }
+    thead tr:nth-child(2) th:first-child {
+        position: sticky;
+        left: 0;
+        top: 35px;
+        background-color: #e0e0e0;
+        z-index: 3;
+    }
+    td:first-child {
         position: sticky;
         left: 0;
         background-color: #f9f9f9;
         z-index: 1;
         font-weight: bold;
     }
+
+    /* Стилі для адрес - чергування світло-жовтого та світло-блакитного */
+    thead tr:first-child th:nth-child(2),
+    thead tr:first-child th:nth-child(3),
+    tbody tr td:nth-child(2),
+    tbody tr td:nth-child(3) {
+        background-color: #ffffcc; /* Світло-жовтий */
+    }
+
+    thead tr:first-child th:nth-child(4),
+    thead tr:first-child th:nth-child(5),
+    tbody tr td:nth-child(4),
+    tbody tr td:nth-child(5) {
+        background-color: #e0f2f7; /* Світло-блакитний */
+    }
+
+    thead tr:first-child th:nth-child(6),
+    thead tr:first-child th:nth-child(7),
+    tbody tr td:nth-child(6),
+    tbody tr td:nth-child(7) {
+        background-color: #ffffcc; /* Світло-жовтий */
+    }
+
+    thead tr:first-child th:nth-child(8),
+    thead tr:first-child th:nth-child(9),
+    tbody tr td:nth-child(8),
+    tbody tr td:nth-child(9) {
+        background-color: #e0f2f7; /* Світло-блакитний */
+    }
+
+    thead tr:first-child th:nth-child(10),
+    thead tr:first-child th:nth-child(11),
+    tbody tr td:nth-child(10),
+    tbody tr td:nth-child(11) {
+        background-color: #ffffcc; /* Світло-жовтий */
+    }
+
+    thead tr:first-child th:nth-child(12),
+    thead tr:first-child th:nth-child(13),
+    tbody tr td:nth-child(12),
+    tbody tr td:nth-child(13) {
+        background-color: #e0f2f7; /* Світло-блакитний */
+    }
+
+    thead tr:first-child th:nth-child(14),
+    thead tr:first-child th:nth-child(15),
+    tbody tr td:nth-child(14),
+    tbody tr td:nth-child(15) {
+        background-color: #ffffcc; /* Світло-жовтий */
+    }
+
+    thead tr:first-child th:nth-child(16),
+    thead tr:first-child th:nth-child(17),
+    tbody tr td:nth-child(16),
+    tbody tr td:nth-child(17) {
+        background-color: #e0f2f7; /* Світло-блакитний */
+    }
+
     .payment {
         background-color: #ffffff;
         width: 80px;
@@ -126,6 +197,63 @@ window.onload = function() {
     var inputs = document.querySelectorAll('input[type="number"]');
     inputs.forEach(function(input) {
         input.addEventListener('input', calculateSums);
+    });
+    calculateSums();
+};
+</script>
+<script>
+function calculateSums() {
+    for (let i = 0; i <= 7; i++) { // Проходимося по всіх стовпцях з сумами
+        let sum = 0;
+        const paymentInputs = document.querySelectorAll(`.payment${i}`);
+        paymentInputs.forEach(function(cell) {
+            const value = parseFloat(cell.value) || 0;
+            sum += value;
+        });
+        const sumElementId = `sum${i}`;
+        const sumElement = document.getElementById(sumElementId);
+        if (sumElement) {
+            sumElement.innerText = sum.toFixed(2) + ' ₴';
+        }
+    }
+}
+
+function checkInputValue() {
+    const inputValue = parseFloat(this.value);
+    const parentCell = this.parentNode;
+
+    if (inputValue >= 0.01) {
+        parentCell.style.backgroundColor = '#ccffcc';
+    } else {
+        parentCell.style.backgroundColor = '';
+    }
+}
+
+window.onload = function() {
+    var inputs = document.querySelectorAll('input[type="number"]');
+    inputs.forEach(function(input) {
+        input.addEventListener('input', calculateSums);
+        input.addEventListener('input', checkInputValue);
+    });
+    calculateSums(); // Викликаємо один раз при завантаженні сторінки для ініціалізації сум
+};
+
+function checkInputValue() {
+    const inputValue = parseFloat(this.value);
+    const parentCell = this.parentNode;
+
+    if (inputValue >= 0.01) {
+        parentCell.style.backgroundColor = '#ccffcc'; // Змініть на бажаний колір
+    } else {
+        parentCell.style.backgroundColor = ''; // Повертаємо початковий колір або задайте інший за замовчуванням
+    }
+}
+
+window.onload = function() {
+    var inputs = document.querySelectorAll('input[type="number"]');
+    inputs.forEach(function(input) {
+        input.addEventListener('input', calculateSums);
+        input.addEventListener('input', checkInputValue); // Додаємо новий обробник подій
     });
     calculateSums();
 };
