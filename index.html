@@ -168,6 +168,7 @@
 </style>
 <script>
 function calculateSums() {
+    const selectedMonth = document.getElementById('monthSelector').value;
     for (let i = 0; i <= 7; i++) {
         let sum = 0;
         const paymentInputs = document.querySelectorAll(`.payment${i}`);
@@ -181,6 +182,7 @@ function calculateSums() {
             sumElement.innerText = sum.toFixed(2) + ' ₴';
         }
     }
+    saveData(selectedMonth); // Зберігаємо дані після розрахунку сум
 }
 
 function checkInputValue() {
@@ -194,7 +196,7 @@ function checkInputValue() {
     }
 }
 
-function saveData() {
+function saveData(month) {
     const data = [];
     const rows = document.querySelectorAll('tbody tr');
     rows.forEach(row => {
@@ -205,16 +207,19 @@ function saveData() {
             if (input) {
                 rowData.push(input.value);
             } else {
-                rowData.push(cell.innerText); // Для першого стовпця "Послуга" та останнього рядка "Загалом"
+                rowData.push(cell.innerText);
             }
         });
         data.push(rowData);
     });
-    localStorage.setItem('komunalni_poslugi_data', JSON.stringify(data));
+
+    const storageKey = `komunalni_poslugi_data_${month}`;
+    localStorage.setItem(storageKey, JSON.stringify(data));
 }
 
-function loadData() {
-    const storedData = localStorage.getItem('komunalni_poslugi_data');
+function loadData(month) {
+    const storageKey = `komunalni_poslugi_data_${month}`;
+    const storedData = localStorage.getItem(storageKey);
     if (storedData) {
         const data = JSON.parse(storedData);
         const rows = document.querySelectorAll('tbody tr');
@@ -233,19 +238,42 @@ function loadData() {
                 });
             }
         });
-        calculateSums(); // Перерахувати суми після завантаження даних
+        calculateSums();
+    } else {
+        // Очистити поля, якщо для вибраного місяця немає даних
+        const inputs = document.querySelectorAll('input[type="number"], input[type="text"]');
+        inputs.forEach(input => {
+            input.value = '';
+        });
+        calculateSums();
     }
 }
 
+function handleMonthChange() {
+    const selectedMonth = document.getElementById('monthSelector').value;
+    loadData(selectedMonth);
+}
+
 window.onload = function() {
+    const monthSelector = document.getElementById('monthSelector');
+    for (let i = 1; i <= 12; i++) {
+        const monthValue = i < 10 ? '0' + i : '' + i;
+        const option = monthSelector.querySelector(`option[value="${monthValue}"]`);
+        if (option && i === new Date().getMonth() + 1) {
+            option.selected = true; // Вибираємо поточний місяць за замовчуванням
+        }
+    }
+
     var inputs = document.querySelectorAll('input[type="number"]');
     inputs.forEach(function(input) {
         input.addEventListener('input', calculateSums);
         input.addEventListener('input', checkInputValue);
-        input.addEventListener('input', saveData); // Додаємо збереження при кожній зміні
     });
-    loadData(); // Завантажуємо дані при завантаженні сторінки
-    calculateSums(); // Викликаємо один раз при завантаженні сторінки для ініціалізації сум
+
+    monthSelector.addEventListener('change', handleMonthChange);
+
+    const initialMonth = document.getElementById('monthSelector').value;
+    loadData(initialMonth); // Завантажуємо дані для початково вибраного місяця
 };
 </script>
 </head>
