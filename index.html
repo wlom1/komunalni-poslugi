@@ -254,6 +254,18 @@ function handleMonthChange() {
     loadData(selectedMonth);
 }
 
+function clearAllData() {
+    const selectedMonth = document.getElementById('monthSelector').value;
+    const storageKey = `komunalni_poslugi_data_${selectedMonth}`;
+    localStorage.removeItem(storageKey);
+
+    const inputs = document.querySelectorAll('input[type="number"], input[type="text"]');
+    inputs.forEach(input => {
+        input.value = '';
+    });
+    calculateSums(); // Оновити суми після очищення
+}
+
 window.onload = function() {
     const monthSelector = document.getElementById('monthSelector');
     for (let i = 1; i <= 12; i++) {
@@ -271,6 +283,7 @@ window.onload = function() {
     });
 
     monthSelector.addEventListener('change', handleMonthChange);
+    document.getElementById('clearAllButton').addEventListener('click', clearAllData); // Додано обробник подій для кнопки
 
     const initialMonth = document.getElementById('monthSelector').value;
     loadData(initialMonth); // Завантажуємо дані для початково вибраного місяця
@@ -292,7 +305,7 @@ window.onload = function() {
     <option value="11">Листопад</option>
     <option value="12">Грудень</option>
 </select>
-<button id="clearAllButton">Очистити все за вибраний місяць</button>
+<button id="clearAllButton">Очистити все за вибраний місяць</button> 
 <h2 style="text-align:center;">Комунальні Послуги</h2>
 <div style="overflow-x: auto;">
 <table>
