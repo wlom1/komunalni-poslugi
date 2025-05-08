@@ -272,8 +272,11 @@ window.onload = function() {
         const monthValue = i < 10 ? '0' + i : '' + i;
         const option = monthSelector.querySelector(`option[value="${monthValue}"]`);
         if (option && i === new Date().getMonth() + 1) {
-            option.selected = true; // Вибираємо поточний місяць за замовчуванням
-        }
+            option.selected = true; // Вибираємо поточний місяць за document.getElementById('saveButton').addEventListener('click', function() {
+    const selectedMonth = document.getElementById('monthSelector').value;
+    saveData(selectedMonth);
+    alert('Дані збережено!'); // Можете додати сповіщення про успішне збереження
+});
     }
 
     var inputs = document.querySelectorAll('input[type="number"]');
